@@ -21,7 +21,9 @@ const TextIconHeader = ({ icon, Header, children, iconColor = 'primary', iconSty
         <IonCol class='ion-text-end' size='auto' className={iconStyles}>
           <IonIcon icon={icon} color={iconColor} />
         </IonCol>
-        <IonCol class='ion-text-start ion-align-items-center'>{Header}</IonCol>
+        <IonCol class='ion-text-start ion-align-items-start' className='pb-1'>
+          {Header}
+        </IonCol>
         <IonRow>
           <IonCol offset='1'>{children}</IonCol>
         </IonRow>

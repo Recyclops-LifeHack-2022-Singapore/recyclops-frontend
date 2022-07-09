@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { IonButton } from '@ionic/react';
+import { IonButton, IonLabel } from '@ionic/react';
 import { IonicColors } from '@/constants/constants';
 
 type Props = {
@@ -12,8 +12,8 @@ type Props = {
 
 const BlockButton = ({ title, color = 'primary', onClick, className }: Props) => {
   return (
-    <IonButton onClick={onClick} color={color} className={`w-full font-epilogue ${className}`}>
-      {title}
+    <IonButton mode='ios' onClick={onClick} color={color} className={`w-full font-epilogue ${className}`}>
+      <IonLabel className='pt-1 text-lg font-semibold'>{title}</IonLabel>
     </IonButton>
   );
 };

@@ -1,7 +1,7 @@
 import { IonCard, IonCardContent, IonCardHeader, IonGrid, IonRow, IonText } from '@ionic/react';
 import React from 'react';
 import { Item } from '@/models/items/items';
-import TextIconHeader from '../TextIconHeader';
+import TextIconHeader from '../textIconHeader';
 import { pricetag, checkmarkCircle } from 'ionicons/icons';
 import { Category } from '@/models/categories/categories';
 import { Resources } from '@/models/resources/resources';

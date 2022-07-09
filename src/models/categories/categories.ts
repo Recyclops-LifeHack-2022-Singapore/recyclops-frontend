@@ -8,7 +8,7 @@ export const link: Category[] = [
   {
     id: 1,
     name: 'Link',
-    color: '#2B6666',
+    color: '#A8E1E1',
   },
 ];
 

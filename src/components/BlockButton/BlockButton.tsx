@@ -6,13 +6,13 @@ import { IonicColors } from '@/constants/constants';
 type Props = {
   title: string;
   color?: IonicColors;
+  onClick?: () => void;
   className?: string;
-  onClick: () => void;
 };
 
 const BlockButton = ({ title, color = 'primary', onClick, className }: Props) => {
   return (
-    <IonButton onClick={onClick} color={color} className={`w-full ${className}`}>
+    <IonButton onClick={onClick} color={color} className={`w-full font-epilogue ${className}`}>
       {title}
     </IonButton>
   );

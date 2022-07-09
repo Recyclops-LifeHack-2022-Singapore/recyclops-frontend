@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import imageReducer from '@/store/image/imageSlice';
 import historyReducer from '@/store/history/historySlice';
+import itemReducer from '@/store/item/itemSlice';
 
 export const store = configureStore({
   reducer: {
     image: imageReducer,
     history: historyReducer,
+    item: itemReducer,
   },
 });
 

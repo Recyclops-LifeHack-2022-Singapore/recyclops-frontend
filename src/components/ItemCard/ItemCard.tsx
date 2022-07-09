@@ -5,6 +5,8 @@ import TextIconHeader from '../textIconHeader';
 import { pricetag, checkmarkCircle, closeCircle, time } from 'ionicons/icons';
 import { Category } from '@/models/categories/categories';
 import { Resources } from '@/models/resources/resources';
+import { toggleShowModal, updateItem } from '@/store/item/itemSlice';
+import { useDispatch } from 'react-redux';
 
 type Props = {
   item?: Item;
@@ -18,8 +20,15 @@ type Props = {
 
 const ItemCard = ({ item, resource, categoryArr, onClick, className, timeString, img }: Props) => {
   const object = item ?? resource;
+  const dispatch = useDispatch();
+
+  const displayModal = () => {
+    item && dispatch(updateItem(item));
+    dispatch(toggleShowModal());
+  };
+
   return (
-    <IonCard onClick={onClick} className={`rounded-xl p-0 bg-white ${className}`} color='black'>
+    <IonCard onClick={() => (onClick ? onClick() : displayModal())} className={`rounded-xl p-0 bg-white ${className}`} color='black'>
       <IonGrid className='w-full border p-0'>
         <IonRow className='p-0'>
           {img && (

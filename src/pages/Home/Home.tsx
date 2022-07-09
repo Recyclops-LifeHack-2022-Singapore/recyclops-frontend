@@ -1,27 +1,92 @@
 import React from 'react';
 
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import { useHistory } from 'react-router';
+import Routes from '@/utilities/routes';
+import { IonRow, IonText, IonGrid } from '@ionic/react';
+import IconTextHeader from '@/components/textIconHeader';
+import PageWithGrid from '@components/PageWithGrid';
+import ItemCard from '@components/ItemCard';
+import { informationCircle, bulbOutline } from 'ionicons/icons';
+import { resources } from '@/models/resources/resources';
+import { link } from '@/models/categories/categories';
+import BlockButton from '@/components/BlockButton';
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
+import { useDispatch } from 'react-redux';
+import { updateTakenImage } from '@/store/image/imageSlice';
 
 const Home: React.FC = () => {
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  const openLink = (link: string) => {
+    const win = window.open(link, '_blank');
+    if (!win) return;
+    win.focus();
+  };
+
+  const takePhotoHandler = async () => {
+    const photo = await Camera.getPhoto({
+      resultType: CameraResultType.Uri,
+      source: CameraSource.Camera,
+      quality: 80,
+      width: 224,
+      height: 224,
+    });
+    if (!photo || !photo.webPath) return;
+    dispatch(
+      updateTakenImage({
+        path: photo.path,
+        preview: photo.webPath,
+      }),
+    );
+    history.push(Routes.imagePreview);
+  };
+
   return (
-    <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>TailwindCSS</IonTitle>
-        </IonToolbar>
-      </IonHeader>
-      <IonContent fullscreen className='relative'>
-        <div className='text-center absolute mx-5 left-0 right-0 top-1/2 transform -translate-y-1/2 flex justify-center items-center'>
-          <div className='border border-gray-100 rounded-xl shadow-2xl p-8 text-white max-w-lg'>
-            <h1 className='text-2xl font-bold'>Using TailwindCSS in Ionic with React</h1>
-            <p className='mt-4'>
-              This is an example of how you can use <span className='font-bold'>TailwindCSS</span> in an{' '}
-              <span className='font-bold'>Ionic</span> application using <span className='font-bold'>React</span> framework.
-            </p>
-          </div>
-        </div>
-      </IonContent>
-    </IonPage>
+    <PageWithGrid>
+      <IconTextHeader
+        className='h-[14%]'
+        iconColor='dark'
+        icon={bulbOutline}
+        iconStyles='text-3xl'
+        Header={
+          <IonText className='font-epilogue text-lg font-medium leading-none' color='dark'>
+            40% of the items we recycle are not suitable for recycling
+          </IonText>
+        }
+      />
+      <IconTextHeader
+        className='h-[6%]'
+        iconColor='dark'
+        icon={informationCircle}
+        iconStyles='text-3xl'
+        Header={
+          <IonText className='font-epilogue text-2xl font-medium' color='dark'>
+            Find Out More!
+          </IonText>
+        }
+      />
+      <IonRow className='h-[55%]'>
+        <IonGrid className='h-full p-0 overflow-y-auto'>
+          {resources.map(
+            resource =>
+              !!resource.name && (
+                <ItemCard
+                  onClick={() => openLink(resource.link)}
+                  className='m-4'
+                  key={resource.id}
+                  resource={resource}
+                  categoryArr={link}
+                />
+              ),
+          )}
+        </IonGrid>
+      </IonRow>
+      <IonRow className='h-[25%] px-4 items-end'>
+        <h1 className='font-medium text-xl font-epilogue text-center'>Check to see if your item is recyclable</h1>
+        <BlockButton className='mb-5' title='Take a Photo' onClick={takePhotoHandler} />
+      </IonRow>
+    </PageWithGrid>
   );
 };
 

@@ -5,3 +5,5 @@ export const severity = {
   WARNING: 'warning',
   INFO: 'info',
 };
+
+export type IonicColors = 'primary' | 'secondary' | 'tertiary' | 'success' | 'warning' | 'danger' | 'light' | 'medium' | 'dark';

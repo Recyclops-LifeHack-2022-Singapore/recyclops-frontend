@@ -39,14 +39,20 @@ const Home: React.FC = () => {
           </IonText>
         }
       />
-      <IonRow className='h-[57%]'>
+      <IonRow className='h-[55%]'>
         <IonGrid className='h-full p-0 overflow-y-auto'>
           {resources.map(resource => (
-            <ItemCard onClick={() => openLink(resource.link)} className='m-4' key={resource.id} resource={resource} categoryArr={link} />
+            <ItemCard
+              onClick={() => openLink(resource.link)}
+              className='mx-4 mt-0 mb-4'
+              key={resource.id}
+              resource={resource}
+              categoryArr={link}
+            />
           ))}
         </IonGrid>
       </IonRow>
-      <IonRow className='h-[23%] px-4 items-end'>
+      <IonRow className='h-[25%] px-4 items-end'>
         <h1 className='pb-8 font-medium text-xl font-epilogue text-center h-0'>Check to see if your item is recyclable</h1>
         <BlockButton className='mb-5' title='Take a Photo' />
       </IonRow>

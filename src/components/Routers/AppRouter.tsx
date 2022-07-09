@@ -22,7 +22,7 @@ const AppRouter = () => {
             </Route>
           </Switch>
         </IonRouterOutlet>
-        <IonTabBar color='light' mode='ios' className='h-20' slot='bottom'>
+        <IonTabBar color='light' mode='ios' className='h-14' slot='bottom'>
           <IonTabButton tab='home' href={Routes.home}>
             <IonIcon icon={home} />
           </IonTabButton>

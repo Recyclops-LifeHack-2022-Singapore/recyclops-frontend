@@ -5,7 +5,7 @@ import { leafOutline } from 'ionicons/icons';
 const AppToolbar = () => {
   return (
     <IonHeader>
-      <IonToolbar color='light' mode='ios' className='h-16 flex'>
+      <IonToolbar color='light' mode='ios' className='h-14 flex'>
         <IonTitle color='primary' className='font-epilogue font-semibold text-2xl justify-center'>
           <IonIcon color='dark' className='pr-1' icon={leafOutline} />
           Recyclops

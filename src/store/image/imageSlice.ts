@@ -19,7 +19,7 @@ export const imageSlice = createSlice({
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
-    updateTakenImage: (state, action: PayloadAction<ImageData>) => {
+    updateTakenImage: (state, action: PayloadAction<ImageData | null>) => {
       state.takenPhoto = action.payload;
     },
   },

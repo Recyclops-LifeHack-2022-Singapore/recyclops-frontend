@@ -9,9 +9,11 @@ import { useApi } from '@/api/ApiHandler';
 import ImageService from '@/api/image/imageService';
 import { useDispatch } from 'react-redux';
 import { updateTakenImage } from '@/store/image/imageSlice';
+import { updateCurrentHistory } from '@/store/history/historySlice';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { Filesystem, Directory } from '@capacitor/filesystem';
 import { base64FromPath } from '@ionic/react-hooks/filesystem';
+import moment from 'moment';
 
 const ImagePreview = () => {
   const dispatch = useDispatch();
@@ -39,11 +41,15 @@ const ImagePreview = () => {
     if (!currentImage) return;
     const fileName = new Date().getTime() + '.jpeg';
     const base64 = await base64FromPath(currentImage.preview);
-    Filesystem.writeFile({
+    await Filesystem.writeFile({
       path: fileName,
       data: base64,
       directory: Directory.Data,
     });
+    const uuid = new Date().getTime().toString();
+    const timeStamp = moment(new Date()).format('ddd, MMM Mo, HH:mm');
+    dispatch(updateCurrentHistory({ id: uuid, imagePath: fileName, timeStamp: timeStamp, itemId: 1 }));
+    dispatch(updateTakenImage(null));
   };
 
   const predictImageHandler = async () => {

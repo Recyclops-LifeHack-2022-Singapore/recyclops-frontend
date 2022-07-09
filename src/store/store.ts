@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import imageReducer from '@/store/image/imageSlice';
+import historyReducer from '@/store/history/historySlice';
 
 export const store = configureStore({
   reducer: {
     image: imageReducer,
+    history: historyReducer,
   },
 });
 

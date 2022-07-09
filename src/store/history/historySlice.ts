@@ -40,7 +40,7 @@ export const historySlice = createSlice({
       });
       Storage.set({ key: 'history', value: JSON.stringify(storableHistory) });
     },
-    setHistory: (state, action: PayloadAction<HistoryData[]>) => {
+    setHistory: (state, action: PayloadAction<HistoryData[] | null>) => {
       state.currentHistory = action.payload;
     },
   },

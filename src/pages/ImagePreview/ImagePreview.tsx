@@ -7,10 +7,31 @@ import { useSelector } from 'react-redux';
 import { getCurrentTakenImage } from '@/store/image/imageSlice';
 import { useApi } from '@/api/ApiHandler';
 import ImageService from '@/api/image/imageService';
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
+import { useDispatch } from 'react-redux';
+import { updateTakenImage } from '@/store/image/imageSlice';
 
 const ImagePreview = () => {
+  const dispatch = useDispatch();
   const currentImage = useSelector(getCurrentTakenImage);
   const [uploadImage] = useApi(() => ImageService.predictData(currentImage));
+
+  const takePhotoHandler = async () => {
+    const photo = await Camera.getPhoto({
+      resultType: CameraResultType.Uri,
+      source: CameraSource.Camera,
+      quality: 80,
+      width: 224,
+      height: 224,
+    });
+    if (!photo || !photo.webPath) return;
+    dispatch(
+      updateTakenImage({
+        path: photo.path,
+        preview: photo.webPath,
+      }),
+    );
+  };
 
   const predictImageHandler = async () => {
     await uploadImage();
@@ -37,7 +58,7 @@ const ImagePreview = () => {
         )}
       </IonRow>
       <IonRow className='h-[10%] items-end px-16'>
-        <BlockButton title='Retake Photo' />
+        <BlockButton onClick={takePhotoHandler} title='Retake Photo' />
       </IonRow>
       <IonRow className='h-[10%] px-16'>
         <BlockButton onClick={predictImageHandler} title='Submit Photo' />

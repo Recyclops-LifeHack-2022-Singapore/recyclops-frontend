@@ -11,21 +11,26 @@ const TakePhoto = () => {
   const history = useHistory();
 
   const takePhotoHandler = async () => {
-    const photo = await Camera.getPhoto({
-      resultType: CameraResultType.Uri,
-      source: CameraSource.Camera,
-      quality: 80,
-      width: 224,
-      height: 224,
-    });
-    if (!photo || !photo.webPath) return;
-    dispatch(
-      updateTakenImage({
-        path: photo.path,
-        preview: photo.webPath,
-      }),
-    );
-    history.push(Routes.imagePreview);
+    try {
+      const photo = await Camera.getPhoto({
+        resultType: CameraResultType.Uri,
+        source: CameraSource.Camera,
+        quality: 80,
+        width: 224,
+        height: 224,
+      });
+      if (!photo || !photo.webPath) return;
+      dispatch(
+        updateTakenImage({
+          path: photo.path,
+          preview: photo.webPath,
+        }),
+      );
+      history.replace(Routes.home);
+      history.push(Routes.imagePreview);
+    } catch (err) {
+      history.go(-1);
+    }
   };
 
   useEffect(() => {

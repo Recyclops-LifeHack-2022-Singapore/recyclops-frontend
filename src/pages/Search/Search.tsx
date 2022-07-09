@@ -5,15 +5,15 @@ import { items } from '@/models/items/items';
 import { categoryMaps } from '@/models/categoryMaps/categoryMaps';
 import { categories } from '@/models/categories/categories';
 import AppToolbar from '@/components/AppToolbar';
-import { IonContextInterface } from '@ionic/react/dist/types/contexts/IonContext';
-import { filter } from 'ionicons/icons';
 
 const Search = () => {
   const [searchText, setSearchText] = useState('');
   const [filteredItems, setFilteredItems] = useState(items);
 
   const onSearchTextChange = (e: CustomEvent<SearchbarChangeEventDetail>) => {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     setSearchText(e.detail.value!);
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     setFilteredItems(items.filter(item => item.name.toLocaleLowerCase().indexOf(e.detail.value!.toLocaleLowerCase()) !== -1));
   };
   return (

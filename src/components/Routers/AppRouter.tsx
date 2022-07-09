@@ -10,6 +10,7 @@ import Home from '@pages/Home';
 import Search from '@pages/Search';
 import ImagePreview from '@pages/ImagePreview';
 import TakePhoto from '@pages/TakePhoto';
+import History from '@pages/History';
 
 const AppRouter = () => {
   return (
@@ -21,6 +22,7 @@ const AppRouter = () => {
             <Route exact path={Routes.search} component={Search} />
             <Route exact path={Routes.imagePreview} component={ImagePreview} />
             <Route exact path={Routes.takePhoto} component={TakePhoto} />
+            <Route exact path={Routes.history} component={History} />
             <Route exact path='*'>
               <Redirect to={Routes.home} />
             </Route>
@@ -36,7 +38,7 @@ const AppRouter = () => {
           <IonTabButton tab='search' href={Routes.search}>
             <IonIcon icon={search} />
           </IonTabButton>
-          <IonTabButton tab='history'>
+          <IonTabButton tab='history' href={Routes.history}>
             <IonIcon icon={time} />
           </IonTabButton>
         </IonTabBar>

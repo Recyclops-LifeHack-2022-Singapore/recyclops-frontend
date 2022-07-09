@@ -2,7 +2,6 @@ import ItemCard from '@/components/ItemCard';
 import { IonPage, IonContent, IonSearchbar, SearchbarChangeEventDetail } from '@ionic/react';
 import React, { useState } from 'react';
 import { items } from '@/models/items/items';
-import { categoryMaps } from '@/models/categoryMaps/categoryMaps';
 import { categories } from '@/models/categories/categories';
 import AppToolbar from '@/components/AppToolbar';
 

@@ -30,4 +30,14 @@ export const resources: Resources[] = [
     name: 'Donate to clean up the ocean!',
     link: 'https://teamseas.org/',
   },
+  {
+    id: 6,
+    name: '',
+    link: 'https://www.towardszerowaste.gov.sg/recycle/where-to-recycle/',
+  },
+  {
+    id: 7,
+    name: '',
+    link: 'https://www.nea.gov.sg/our-services/waste-management/3r-programmes-and-resources/e-waste-management/where-to-recycle-e-waste',
+  },
 ];

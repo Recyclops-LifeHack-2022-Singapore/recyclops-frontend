@@ -5,7 +5,7 @@ import AppToolbar from '@/components/AppToolbar';
 
 const Home: React.FC = () => {
   return (
-    <IonPage className='bg-[#F4F5F8]'>
+    <IonPage>
       <AppToolbar />
       <IonContent fullscreen className='relative'></IonContent>
     </IonPage>

@@ -5,9 +5,17 @@ import PageWithGrid from '@components/PageWithGrid';
 import BlockButton from '@components/BlockButton';
 import { useSelector } from 'react-redux';
 import { getCurrentTakenImage } from '@/store/image/imageSlice';
+import { useApi } from '@/api/ApiHandler';
+import ImageService from '@/api/image/imageService';
 
 const ImagePreview = () => {
   const currentImage = useSelector(getCurrentTakenImage);
+  const [uploadImage] = useApi(() => ImageService.predictData(currentImage));
+
+  const predictImageHandler = async () => {
+    await uploadImage();
+  };
+
   return (
     <PageWithGrid>
       <IonRow className='h-[10%]'></IonRow>
@@ -32,7 +40,7 @@ const ImagePreview = () => {
         <BlockButton title='Retake Photo' />
       </IonRow>
       <IonRow className='h-[10%] px-16'>
-        <BlockButton title='Submit Photo' />
+        <BlockButton onClick={predictImageHandler} title='Submit Photo' />
       </IonRow>
     </PageWithGrid>
   );

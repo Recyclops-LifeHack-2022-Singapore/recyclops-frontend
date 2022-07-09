@@ -53,7 +53,7 @@ const Home: React.FC = () => {
         </IonGrid>
       </IonRow>
       <IonRow className='h-[25%] px-4 items-end'>
-        <h1 className='pb-8 font-medium text-xl font-epilogue text-center h-0'>Check to see if your item is recyclable</h1>
+        <h1 className='font-medium text-xl font-epilogue text-center'>Check to see if your item is recyclable</h1>
         <BlockButton className='mb-5' title='Take a Photo' />
       </IonRow>
     </PageWithGrid>

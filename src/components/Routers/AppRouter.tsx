@@ -6,7 +6,6 @@ import { IonReactRouter } from '@ionic/react-router';
 import Routes from '@/utilities/routes';
 
 import Home from '@pages/Home';
-import AuthHome from '@/pages/Authentication/Home';
 
 const AppRouter = () => {
   return (
@@ -14,9 +13,8 @@ const AppRouter = () => {
       <IonRouterOutlet>
         <Switch>
           <Route exact path={Routes.base}>
-            <Redirect to={Routes.authentication.home} />
+            <Redirect to={Routes.home} />
           </Route>
-          <Route exact path={Routes.authentication.home} component={AuthHome} />
           <Route exact path={Routes.home} component={Home} />
           <Route exact path='*'>
             <Redirect to={Routes.base} />

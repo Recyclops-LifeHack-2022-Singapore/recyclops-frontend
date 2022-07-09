@@ -5,10 +5,10 @@ export interface isSuccess {
   isSuccess: boolean;
 }
 
-export function useApi<T>(apiPromise: (id?: number) => Promise<ApiData<T>>) {
+export function useApi(apiPromise: (id?: number) => Promise<ApiData>) {
   const [isLoading, setIsLoading] = useState(false);
 
-  async function fetchApi(id?: number): Promise<ApiData<T> & isSuccess> {
+  async function fetchApi(id?: number): Promise<ApiData & isSuccess> {
     try {
       const response = await apiPromise(id);
       console.log(response);
@@ -28,7 +28,7 @@ export function useApi<T>(apiPromise: (id?: number) => Promise<ApiData<T>>) {
       const response = await fetchApi(id);
       return response;
     }
-    return { message: 'Internal Server Error', isSuccess: false };
+    return { class_name: '', confidence: 0, isSuccess: false };
   }
 
   return [callApi] as const;

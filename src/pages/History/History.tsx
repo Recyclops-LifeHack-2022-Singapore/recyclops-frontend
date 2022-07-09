@@ -7,6 +7,7 @@ import ItemCard from '@components/ItemCard';
 import { useDispatch, useSelector } from 'react-redux';
 import { setHistory } from '@/store/history/historySlice';
 import { getCurrentHistory } from '@/store/history/historySlice';
+import { toggleShowModal, updateItem } from '@/store/item/itemSlice';
 import { items } from '@/models/items/items';
 import { categories } from '@/models/categories/categories';
 import { Storage } from '@capacitor/storage';
@@ -56,16 +57,25 @@ const History = () => {
             <h1 className='pl-3.5 pt-3 font-epilogue'>No History, take a photo to add one!</h1>
           )}
           {currentHistory &&
-            currentHistory.map(history => (
-              <ItemCard
-                className='mt-0'
-                key={history.id}
-                item={items[0]}
-                categoryArr={[categories[0]]}
-                timeString={history.timeStamp}
-                img={history.base64}
-              />
-            ))}
+            currentHistory.map(history => {
+              const item = items.find(item => item.id === history.itemId);
+              const openModal = () => {
+                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                dispatch(updateItem(item!));
+                dispatch(toggleShowModal());
+              };
+              return (
+                <ItemCard
+                  onClick={openModal}
+                  className='mt-0'
+                  key={history.id}
+                  item={item}
+                  categoryArr={categories.filter(category => category.id === item?.categoryId)}
+                  timeString={history.timeStamp}
+                  img={history.base64}
+                />
+              );
+            })}
         </IonGrid>
       </IonRow>
       <IonRow className='px-5'>

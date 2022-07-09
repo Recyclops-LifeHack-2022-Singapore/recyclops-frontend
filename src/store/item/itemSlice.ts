@@ -34,11 +34,14 @@ export const itemSlice = createSlice({
       }
     },
     toggleShowModal: state => {
-      state.showModal = !state.showModal;
+      state.showModal = true;
+    },
+    toggleHideModal: state => {
+      state.showModal = false;
     },
   },
 });
 
-export const { updateItem, toggleShowModal } = itemSlice.actions;
+export const { updateItem, toggleShowModal, toggleHideModal } = itemSlice.actions;
 
 export default itemSlice.reducer;

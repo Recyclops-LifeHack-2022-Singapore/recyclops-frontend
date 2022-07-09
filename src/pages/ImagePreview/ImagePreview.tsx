@@ -3,17 +3,19 @@ import React from 'react';
 import { IonRow } from '@ionic/react';
 import PageWithGrid from '@components/PageWithGrid';
 import BlockButton from '@components/BlockButton';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { toggleShowModal, updateItem } from '@/store/item/itemSlice';
 import { getCurrentTakenImage } from '@/store/image/imageSlice';
 import { useApi } from '@/api/ApiHandler';
 import ImageService from '@/api/image/imageService';
-import { useDispatch } from 'react-redux';
 import { updateTakenImage } from '@/store/image/imageSlice';
 import { addToHistory } from '@/store/history/historySlice';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { Filesystem, Directory } from '@capacitor/filesystem';
 import { base64FromPath } from '@ionic/react-hooks/filesystem';
 import moment from 'moment';
+import { ApiData } from '@/api/ApiService';
+import { items } from '@/models/items/items';
 
 const ImagePreview = () => {
   const dispatch = useDispatch();
@@ -37,7 +39,7 @@ const ImagePreview = () => {
     );
   };
 
-  const addToMemoryHandler = async () => {
+  const addToMemoryHandler = async (classification: string) => {
     if (!currentImage) return;
     const fileName = new Date().getTime() + '.jpeg';
     const base64 = await base64FromPath(currentImage.preview);
@@ -48,7 +50,10 @@ const ImagePreview = () => {
     });
     const uuid = new Date().getTime().toString();
     const timeStamp = moment(new Date()).format('ddd, MMM Mo, HH:mm');
-    dispatch(addToHistory({ id: uuid, imagePath: fileName, timeStamp: timeStamp, itemId: 1, base64: base64 }));
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    const itemId = items.find(item => item.ml_id === classification)!.id;
+    console.log(itemId);
+    dispatch(addToHistory({ id: uuid, imagePath: fileName, timeStamp: timeStamp, itemId: itemId, base64: base64 }));
     dispatch(updateTakenImage(null));
   };
 
@@ -59,7 +64,12 @@ const ImagePreview = () => {
         // show error toast
         return;
       }
-      addToMemoryHandler();
+      const item = items.find(item => item.ml_id === (res as ApiData).class_name);
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      dispatch(updateItem(item!));
+      dispatch(toggleShowModal());
+      console.log((res as ApiData).class_name);
+      addToMemoryHandler((res as ApiData).class_name ?? '');
     } catch (err) {
       console.log(err);
     }

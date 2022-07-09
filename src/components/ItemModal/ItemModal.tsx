@@ -4,7 +4,7 @@ import { pricetag, checkmarkCircle, closeCircle, informationCircle, caretForward
 import { IonContent, IonGrid, IonIcon, IonModal, IonRow, IonText } from '@ionic/react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '@/store/store';
-import { toggleShowModal } from '@/store/item/itemSlice';
+import { toggleHideModal } from '@/store/item/itemSlice';
 import { categories } from '@/models/categories/categories';
 
 import './main.css';
@@ -18,7 +18,7 @@ const ItemModal = () => {
   const remarksArr = useSelector((state: RootState) => state.item.remarksArr);
   const showModal = useSelector((state: RootState) => state.item.showModal);
   const onDismiss = () => {
-    dispatch(toggleShowModal());
+    dispatch(toggleHideModal());
   };
 
   const openLink = (link: string) => {
@@ -38,7 +38,7 @@ const ItemModal = () => {
         className='text-black items-center px-3'
       >
         <IonContent>
-          <IonGrid className='pt-5 px-3 h-2/5'>
+          <IonGrid className='pt-5 px-3 h-[40%]'>
             <IonRow>
               <IonText className='not-italic font-bold text-2xl ml-1 text-black font-epilogue mb-2'>{item.name}</IonText>
             </IonRow>
@@ -74,7 +74,7 @@ const ItemModal = () => {
                 iconColor='#ffffff'
               />
             </IonRow>
-            <IonRow className='h-full overflow-y-auto overflow-x-clip items-start '>
+            <IonRow className='h-[110%] overflow-y-auto overflow-x-clip items-start'>
               {remarksArr.map(remark => {
                 const resource = remark.resourceId ? resources.filter(r => r.id === remark.resourceId)[0] : null;
                 return (
@@ -94,8 +94,8 @@ const ItemModal = () => {
                 );
               })}
             </IonRow>
-            <BlockButton className='mb-3' title='Close' onClick={onDismiss} />
           </IonGrid>
+          <BlockButton className='absolute left-2 bottom-4 w-[95%]' title='Close' onClick={onDismiss} />
         </IonContent>
       </IonModal>
     </>

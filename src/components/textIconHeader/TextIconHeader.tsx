@@ -6,17 +6,18 @@ type Props = {
   Header: React.ReactNode;
   children?: React.ReactNode;
   iconColor?: string;
+  iconStyles?: string;
 };
 
 // Header with Icon and Text and Content below inside IonRow
 // Content to be included as children wrapped inside
 // Must be included inside IonGrid
 
-const TextIconHeader = ({ icon, Header, children, iconColor = 'primary' }: Props) => {
+const TextIconHeader = ({ icon, Header, children, iconColor = 'primary', iconStyles = 'text-xl' }: Props) => {
   return (
     <>
       <IonRow class='ion-align-items-center'>
-        <IonCol class='ion-text-end' size='auto' className='text-xl'>
+        <IonCol class='ion-text-end' size='auto' className={iconStyles}>
           <IonIcon icon={icon} color={iconColor} />
         </IonCol>
         <IonCol class='ion-text-start ion-align-items-center'>{Header}</IonCol>

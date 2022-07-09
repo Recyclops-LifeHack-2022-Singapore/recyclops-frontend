@@ -7,6 +7,7 @@ import Routes from '@/utilities/routes';
 import { home, camera, time, search } from 'ionicons/icons';
 
 import Home from '@pages/Home';
+import Search from '@pages/Search';
 
 const AppRouter = () => {
   return (
@@ -15,6 +16,7 @@ const AppRouter = () => {
         <IonRouterOutlet>
           <Switch>
             <Route exact path={Routes.home} component={Home} />
+            <Route exact path={Routes.search} component={Search} />
             <Route exact path='*'>
               <Redirect to={Routes.home} />
             </Route>
@@ -27,7 +29,7 @@ const AppRouter = () => {
           <IonTabButton tab='camera'>
             <IonIcon icon={camera} />
           </IonTabButton>
-          <IonTabButton tab='search'>
+          <IonTabButton tab='search' href={Routes.search}>
             <IonIcon icon={search} />
           </IonTabButton>
           <IonTabButton tab='history'>

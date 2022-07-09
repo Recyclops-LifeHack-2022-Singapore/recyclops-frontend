@@ -12,7 +12,7 @@ type Props = {
 
 const ItemCard = ({ item, categoryArr }: Props) => {
   return (
-    <IonCard className='rounded-xl bg-white' color='black'>
+    <IonCard className='rounded-xl bg-white mt-1 mb-2' color='black'>
       <IonGrid>
         <IonRow>
           <IonCardHeader className='pl-3 pb-0 pt-2'>
@@ -35,6 +35,7 @@ const ItemCard = ({ item, categoryArr }: Props) => {
           />
           <TextIconHeader
             icon={checkmarkCircle}
+            iconStyles='text-2xl pr-0'
             Header={<IonText className='font-epilogue font-medium px-2'>{item.isRecyclable ? 'Recyclable' : 'Not Recyclable'}</IonText>}
             iconColor={'success'}
           />

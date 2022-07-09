@@ -42,13 +42,7 @@ const Home: React.FC = () => {
       <IonRow className='h-[55%]'>
         <IonGrid className='h-full p-0 overflow-y-auto'>
           {resources.map(resource => (
-            <ItemCard
-              onClick={() => openLink(resource.link)}
-              className='mx-4 mt-0 mb-4'
-              key={resource.id}
-              resource={resource}
-              categoryArr={link}
-            />
+            <ItemCard onClick={() => openLink(resource.link)} className='m-4' key={resource.id} resource={resource} categoryArr={link} />
           ))}
         </IonGrid>
       </IonRow>

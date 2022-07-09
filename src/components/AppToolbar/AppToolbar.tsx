@@ -6,7 +6,7 @@ const AppToolbar = () => {
   return (
     <IonHeader>
       <IonToolbar mode='ios' className='h-16 flex'>
-        <IonTitle color='primary' className='font-epilogue font-semibold	text-2xl justify-center'>
+        <IonTitle color='primary' className='font-epilogue font-semibold text-2xl justify-center'>
           <IonIcon color='dark' className='pr-1' icon={leafOutline} />
           Recyclops
         </IonTitle>

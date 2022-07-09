@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import type { RootState } from '@/store/store';
 import { Item, items } from '@/models/items/items';
 import { Remark, remarks } from '@/models/remarks/remarks';
 import { remarkMaps } from '@/models/remarkMaps/remarkMaps';

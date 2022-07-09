@@ -1,11 +1,11 @@
-# Chores Frontend
+# Recyclops Frontend
 
-The Frontend repository for Moon Chores hosted on Netlify. Built with Ionic, React, Redux, TypeScript, Tailwind CSS
+The Frontend repository for Recyclops hosted on Netlify. Built with Ionic, React, Redux, TypeScript, Tailwind CSS
 
 ## Documentation
 
-- [**Live Site**](https://moon-chores.netlify.app/)
-- [**Figma Design**](https://www.figma.com/file/TZwrS5uTplC5hSRmKvDFhX/Moon-Chores?node-id=0%3A1)
+- [**Live Site**]()
+- [**Figma Design**](https://www.figma.com/file/Von8ACBD5yA7R6gY5gBqIv/Recyclops?node-id=0%3A1)
 
 ## Inital setup
 

@@ -8,6 +8,7 @@ import { home, camera, time, search } from 'ionicons/icons';
 
 import Home from '@pages/Home';
 import Search from '@pages/Search';
+import ImagePreview from '@pages/ImagePreview';
 
 const AppRouter = () => {
   return (
@@ -17,6 +18,7 @@ const AppRouter = () => {
           <Switch>
             <Route exact path={Routes.home} component={Home} />
             <Route exact path={Routes.search} component={Search} />
+            <Route exact path={Routes.imagePreview} component={ImagePreview} />
             <Route exact path='*'>
               <Redirect to={Routes.home} />
             </Route>

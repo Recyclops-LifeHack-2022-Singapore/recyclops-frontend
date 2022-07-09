@@ -1,7 +1,7 @@
 const Routes = {
   base: '/',
   home: '/home',
-  test: '/test',
+  imagePreview: '/imagePreview',
   search: '/search',
 };
 

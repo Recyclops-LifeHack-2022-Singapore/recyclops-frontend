@@ -7,9 +7,11 @@ import { useSelector } from 'react-redux';
 import { getCurrentTakenImage } from '@/store/image/imageSlice';
 import { useApi } from '@/api/ApiHandler';
 import ImageService from '@/api/image/imageService';
-import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { useDispatch } from 'react-redux';
 import { updateTakenImage } from '@/store/image/imageSlice';
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
+import { Filesystem, Directory } from '@capacitor/filesystem';
+import { base64FromPath } from '@ionic/react-hooks/filesystem';
 
 const ImagePreview = () => {
   const dispatch = useDispatch();
@@ -33,8 +35,28 @@ const ImagePreview = () => {
     );
   };
 
+  const addToMemoryHandler = async () => {
+    if (!currentImage) return;
+    const fileName = new Date().getTime() + '.jpeg';
+    const base64 = await base64FromPath(currentImage.preview);
+    Filesystem.writeFile({
+      path: fileName,
+      data: base64,
+      directory: Directory.Data,
+    });
+  };
+
   const predictImageHandler = async () => {
-    await uploadImage();
+    try {
+      const res = await uploadImage();
+      if (!res.isSuccess) {
+        // show error toast
+        return;
+      }
+      addToMemoryHandler();
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (

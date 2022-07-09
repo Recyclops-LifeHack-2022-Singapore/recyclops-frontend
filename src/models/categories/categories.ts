@@ -20,7 +20,22 @@ export const categories: Category[] = [
   },
   {
     id: 2,
-    name: 'Cardboard',
-    color: '#FEA656',
+    name: 'Plastic',
+    color: '#3ac9fc',
+  },
+  {
+    id: 3,
+    name: 'Glass',
+    color: '#9c9a9a',
+  },
+  {
+    id: 4,
+    name: 'Metal',
+    color: '#b780ff',
+  },
+  {
+    id: 5,
+    name: 'Others',
+    color: '#92fa87',
   },
 ];

@@ -2,7 +2,7 @@ import { IonCard, IonCardContent, IonCardHeader, IonGrid, IonRow, IonText } from
 import React from 'react';
 import { Item } from '@/models/items/items';
 import TextIconHeader from '../textIconHeader';
-import { pricetag, checkmarkCircle } from 'ionicons/icons';
+import { pricetag, checkmarkCircle, closeCircle } from 'ionicons/icons';
 import { Category } from '@/models/categories/categories';
 import { Resources } from '@/models/resources/resources';
 
@@ -40,10 +40,10 @@ const ItemCard = ({ item, resource, categoryArr, onClick, className }: Props) =>
           />
           {item && (
             <TextIconHeader
-              icon={checkmarkCircle}
+              icon={item.isRecyclable ? checkmarkCircle : closeCircle}
               iconStyles='text-2xl pr-0'
               Header={<IonText className='font-epilogue font-medium px-2'>{item.isRecyclable ? 'Recyclable' : 'Not Recyclable'}</IonText>}
-              iconColor={'success'}
+              iconColor={item.isRecyclable ? 'success' : 'danger'}
             />
           )}
         </IonCardContent>

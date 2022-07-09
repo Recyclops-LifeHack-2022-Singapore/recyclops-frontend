@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { IonTabs, IonTabBar, IonTabButton, IonRouterOutlet, IonIcon } from '@ionic/react';
@@ -11,8 +11,34 @@ import Search from '@pages/Search';
 import ImagePreview from '@pages/ImagePreview';
 import TakePhoto from '@pages/TakePhoto';
 import History from '@pages/History';
+import { Filesystem, Directory } from '@capacitor/filesystem';
+import { Storage } from '@capacitor/storage';
+import { HistoryData } from '@/store/history/historySlice';
+import { useDispatch } from 'react-redux';
+import { setHistory } from '@/store/history/historySlice';
 
 const AppRouter = () => {
+  const dispatch = useDispatch();
+
+  const initHistory = async () => {
+    const historyData = await Storage.get({ key: 'history' });
+    const storedHistory: HistoryData[] = historyData.value ? JSON.parse(historyData.value) : [];
+
+    const loadedHistory: HistoryData[] = [];
+    for (const history of storedHistory) {
+      const file = await Filesystem.readFile({
+        path: history.imagePath,
+        directory: Directory.Data,
+      });
+      loadedHistory.push({ ...history, base64: 'data:image/jpeg;base64,' + file.data });
+    }
+    dispatch(setHistory(loadedHistory));
+  };
+
+  useEffect(() => {
+    initHistory();
+  }, []);
+
   return (
     <IonReactRouter>
       <IonTabs>

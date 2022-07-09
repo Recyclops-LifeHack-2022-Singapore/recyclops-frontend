@@ -9,7 +9,7 @@ import { useApi } from '@/api/ApiHandler';
 import ImageService from '@/api/image/imageService';
 import { useDispatch } from 'react-redux';
 import { updateTakenImage } from '@/store/image/imageSlice';
-import { updateCurrentHistory } from '@/store/history/historySlice';
+import { addToHistory } from '@/store/history/historySlice';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { Filesystem, Directory } from '@capacitor/filesystem';
 import { base64FromPath } from '@ionic/react-hooks/filesystem';
@@ -48,7 +48,7 @@ const ImagePreview = () => {
     });
     const uuid = new Date().getTime().toString();
     const timeStamp = moment(new Date()).format('ddd, MMM Mo, HH:mm');
-    dispatch(updateCurrentHistory({ id: uuid, imagePath: fileName, timeStamp: timeStamp, itemId: 1 }));
+    dispatch(addToHistory({ id: uuid, imagePath: fileName, timeStamp: timeStamp, itemId: 1, base64: base64 }));
     dispatch(updateTakenImage(null));
   };
 

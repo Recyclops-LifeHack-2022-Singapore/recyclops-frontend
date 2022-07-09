@@ -1,0 +1,7 @@
+{
+  "name": "moon-chores",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}

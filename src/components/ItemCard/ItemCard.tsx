@@ -23,7 +23,11 @@ const ItemCard = ({ item, categoryArr }: Props) => {
           <TextIconHeader
             icon={pricetag}
             Header={categoryArr.map(cat => (
-              <IonText key={cat.id} className={`font-epilogue font-medium bg-[${cat.color}] py-1 px-2 mr-1 rounded-xl`}>
+              <IonText
+                key={cat.id}
+                className={`font-epilogue font-medium py-1 px-2 mr-1 rounded-xl`}
+                style={{ backgroundColor: cat.color }}
+              >
                 {cat.name}
               </IonText>
             ))}

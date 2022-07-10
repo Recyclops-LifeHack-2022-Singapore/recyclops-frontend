@@ -5,7 +5,6 @@ import { items } from '@/models/items/items';
 import { categories } from '@/models/categories/categories';
 import AppToolbar from '@/components/AppToolbar';
 import ItemModal from '@/components/ItemModal';
-import NoMatchModal from '@/components/NoMatchModal';
 
 const Search = () => {
   const [searchText, setSearchText] = useState('');
@@ -20,7 +19,6 @@ const Search = () => {
   return (
     <IonPage className='bg-[#000000]'>
       <AppToolbar />
-      <NoMatchModal showModal={true} onDismiss={() => console.log('he')} />
       <ItemModal />
       <IonContent className='bg-[#000000]'>
         <IonSearchbar className='rounded-xl pb-0' mode='ios' value={searchText} onIonChange={onSearchTextChange} />

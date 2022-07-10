@@ -16,9 +16,12 @@ import { base64FromPath } from '@ionic/react-hooks/filesystem';
 import moment from 'moment';
 import { ApiData } from '@/api/ApiService';
 import { items } from '@/models/items/items';
+import Routes from '@/utilities/routes';
+import { useHistory } from 'react-router';
 
 const ImagePreview = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const currentImage = useSelector(getCurrentTakenImage);
   const [uploadImage] = useApi(() => ImageService.predictData(currentImage));
 
@@ -55,6 +58,7 @@ const ImagePreview = () => {
     console.log(itemId);
     dispatch(addToHistory({ id: uuid, imagePath: fileName, timeStamp: timeStamp, itemId: itemId, base64: base64 }));
     dispatch(updateTakenImage(null));
+    history.replace(Routes.history);
   };
 
   const predictImageHandler = async () => {

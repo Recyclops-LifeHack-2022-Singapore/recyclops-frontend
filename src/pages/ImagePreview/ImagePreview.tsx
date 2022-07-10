@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { IonRow } from '@ionic/react';
 import PageWithGrid from '@components/PageWithGrid';
 import BlockButton from '@components/BlockButton';
 import { useSelector, useDispatch } from 'react-redux';
-import { toggleShowModal, updateItem } from '@/store/item/itemSlice';
+import { setisError, setShowErrorModal, toggleShowModal, updateItem } from '@/store/item/itemSlice';
 import { getCurrentTakenImage } from '@/store/image/imageSlice';
 import { useApi } from '@/api/ApiHandler';
 import ImageService from '@/api/image/imageService';
@@ -17,6 +17,7 @@ import moment from 'moment';
 import { items } from '@/models/items/items';
 import Routes from '@/utilities/routes';
 import { useHistory } from 'react-router';
+import NoMatchModal from '@/components/NoMatchModal';
 
 const ImagePreview = () => {
   const dispatch = useDispatch();
@@ -63,12 +64,16 @@ const ImagePreview = () => {
   const predictImageHandler = async () => {
     try {
       const res = await uploadImage();
+      console.log('santosh');
+      console.log(res);
       if (!res.isSuccess) {
-        // show error toast
+        dispatch(setisError(true));
+        dispatch(setShowErrorModal(true));
         return;
       }
       if (res.confidence < 0.65) {
-        // display error modal
+        dispatch(setisError(false));
+        dispatch(setShowErrorModal(true));
         return;
       }
       const item = items.find(item => item.ml_id === res.class_name);
@@ -83,6 +88,7 @@ const ImagePreview = () => {
 
   return (
     <PageWithGrid>
+      <NoMatchModal />
       <IonRow className='h-[10%]'></IonRow>
       <IonRow className='h-[5%] items-end'>
         <h1 className='text-center w-full font-epilogue font-medium'>Image Preview</h1>

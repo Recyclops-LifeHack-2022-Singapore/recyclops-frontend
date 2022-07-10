@@ -12,12 +12,16 @@ interface ItemState {
   item: Item;
   remarksArr: Remark[];
   showModal: boolean;
+  showErrorModal: boolean;
+  isError: boolean;
 }
 
 const initialState: ItemState = {
   item: items[0],
   showModal: false,
   remarksArr: [],
+  showErrorModal: false,
+  isError: false,
 };
 
 export const itemSlice = createSlice({
@@ -39,9 +43,15 @@ export const itemSlice = createSlice({
     toggleHideModal: state => {
       state.showModal = false;
     },
+    setShowErrorModal: (state, action: PayloadAction<boolean>) => {
+      state.showErrorModal = action.payload;
+    },
+    setisError: (state, action: PayloadAction<boolean>) => {
+      state.isError = action.payload;
+    },
   },
 });
 
-export const { updateItem, toggleShowModal, toggleHideModal } = itemSlice.actions;
+export const { updateItem, toggleShowModal, toggleHideModal, setShowErrorModal, setisError } = itemSlice.actions;
 
 export default itemSlice.reducer;

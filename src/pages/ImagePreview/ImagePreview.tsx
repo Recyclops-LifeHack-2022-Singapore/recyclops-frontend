@@ -17,12 +17,13 @@ import moment from 'moment';
 import { items } from '@/models/items/items';
 import Routes from '@/utilities/routes';
 import { useHistory } from 'react-router';
-import NoMatchModal from '@/components/NoMatchModal';
+import Loader from '@/components/Loader';
 
 const ImagePreview = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const currentImage = useSelector(getCurrentTakenImage);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [uploadImage] = useApi(() => ImageService.predictData(currentImage));
 
   const takePhotoHandler = async () => {
@@ -62,10 +63,10 @@ const ImagePreview = () => {
   };
 
   const predictImageHandler = async () => {
+    setIsLoading(true);
     try {
       const res = await uploadImage();
-      console.log('santosh');
-      console.log(res);
+      setIsLoading(false);
       if (!res.isSuccess) {
         dispatch(setisError(true));
         dispatch(setShowErrorModal(true));
@@ -86,33 +87,40 @@ const ImagePreview = () => {
     }
   };
 
+  const ImagePreviewComponent = () => {
+    return (
+      <>
+        <IonRow className='h-[10%]'></IonRow>
+        <IonRow className='h-[5%] items-end'>
+          <h1 className='text-center w-full font-epilogue font-medium'>Image Preview</h1>
+        </IonRow>
+        <IonRow className='h-[50%] justify-center'>
+          {!currentImage && (
+            <div className='bg-[#a8a8a873] rounded-xl h-full w-4/6 flex justify-center items-center'>
+              <h1 className='font-epilogue'>No Image Taken</h1>
+            </div>
+          )}
+          {currentImage && (
+            <img
+              src={currentImage.preview}
+              alt='Preview'
+              className='rounded-xl h-full w-4/6 flex justify-center items-center object-cover object-center'
+            />
+          )}
+        </IonRow>
+        <IonRow className='h-[10%] items-end px-16'>
+          <BlockButton onClick={takePhotoHandler} title='Retake Photo' />
+        </IonRow>
+        <IonRow className='h-[10%] px-16'>
+          <BlockButton onClick={predictImageHandler} title='Submit Photo' />
+        </IonRow>
+      </>
+    );
+  };
+
   return (
     <PageWithGrid>
-      <NoMatchModal />
-      <IonRow className='h-[10%]'></IonRow>
-      <IonRow className='h-[5%] items-end'>
-        <h1 className='text-center w-full font-epilogue font-medium'>Image Preview</h1>
-      </IonRow>
-      <IonRow className='h-[50%] justify-center'>
-        {!currentImage && (
-          <div className='bg-[#a8a8a873] rounded-xl h-full w-4/6 flex justify-center items-center'>
-            <h1 className='font-epilogue'>No Image Taken</h1>
-          </div>
-        )}
-        {currentImage && (
-          <img
-            src={currentImage.preview}
-            alt='Preview'
-            className='rounded-xl h-full w-4/6 flex justify-center items-center object-cover object-center'
-          />
-        )}
-      </IonRow>
-      <IonRow className='h-[10%] items-end px-16'>
-        <BlockButton onClick={takePhotoHandler} title='Retake Photo' />
-      </IonRow>
-      <IonRow className='h-[10%] px-16'>
-        <BlockButton onClick={predictImageHandler} title='Submit Photo' />
-      </IonRow>
+      {isLoading && <Loader />} {!isLoading && <ImagePreviewComponent />}
     </PageWithGrid>
   );
 };

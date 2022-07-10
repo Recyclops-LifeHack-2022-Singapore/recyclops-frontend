@@ -27,10 +27,12 @@ import AppRouter from '@components/Routers/AppRouter';
 
 setupIonicReact();
 
-const App: React.FC = () => (
-  <IonApp>
-    <AppRouter />
-  </IonApp>
-);
+const App: React.FC = () => {
+  return (
+    <IonApp>
+      <AppRouter />
+    </IonApp>
+  );
+};
 
 export default App;

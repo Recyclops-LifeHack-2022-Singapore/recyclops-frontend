@@ -3,11 +3,6 @@ import { Item, items } from '@/models/items/items';
 import { Remark, remarks } from '@/models/remarks/remarks';
 import { remarkMaps } from '@/models/remarkMaps/remarkMaps';
 
-export type ImageData = {
-  path: string | undefined;
-  preview: string;
-};
-
 interface ItemState {
   item: Item;
   remarksArr: Remark[];

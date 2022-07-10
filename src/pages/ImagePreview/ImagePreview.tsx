@@ -14,7 +14,6 @@ import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { Filesystem, Directory } from '@capacitor/filesystem';
 import { base64FromPath } from '@ionic/react-hooks/filesystem';
 import moment from 'moment';
-import { ApiData } from '@/api/ApiService';
 import { items } from '@/models/items/items';
 import Routes from '@/utilities/routes';
 import { useHistory } from 'react-router';
@@ -68,12 +67,15 @@ const ImagePreview = () => {
         // show error toast
         return;
       }
-      const item = items.find(item => item.ml_id === (res as ApiData).class_name);
+      if (res.confidence < 0.65) {
+        // display error modal
+        return;
+      }
+      const item = items.find(item => item.ml_id === res.class_name);
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       dispatch(updateItem(item!));
       dispatch(toggleShowModal());
-      console.log((res as ApiData).class_name);
-      addToMemoryHandler((res as ApiData).class_name ?? '');
+      addToMemoryHandler(res.class_name ?? '');
     } catch (err) {
       console.log(err);
     }

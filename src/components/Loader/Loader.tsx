@@ -5,7 +5,7 @@ import LoadingIcon from './Rhombus.gif';
 
 const Loader = () => {
   return (
-    <div className='bg-[#ffffff] h-screen w-screen flex items-center justify-center'>
+    <div className='bg-[#ffffff] h-full w-full flex items-center justify-center'>
       <IonGrid>
         <IonRow className='justify-center'>
           <img src={LoadingIcon} />

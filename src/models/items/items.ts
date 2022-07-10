@@ -417,4 +417,14 @@ export const items: Item[] = [
     isRecyclable: false,
     categoryId: 5,
   },
-];
+].sort((a, b) => {
+  const fa = a.name.toLowerCase();
+  const fb = b.name.toLowerCase();
+
+  if (fa < fb) {
+    return -1;
+  } else if (fa > fb) {
+    return 1;
+  }
+  return 0;
+});

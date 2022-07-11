@@ -4,7 +4,7 @@ The Frontend repository for Recyclops hosted on Netlify. Built with Ionic, React
 
 ## Documentation
 
-- [**Live Site**]()
+- [**Live Site**](https://recyclops.netlify.app/home)
 - [**Figma Design**](https://www.figma.com/file/Von8ACBD5yA7R6gY5gBqIv/Recyclops?node-id=0%3A1)
 
 ## Inital setup

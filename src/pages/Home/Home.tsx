@@ -43,7 +43,7 @@ const Home: React.FC = () => {
   };
 
   return (
-    <PageWithGrid>
+    <PageWithGrid toolbarTitle='Welcome to Recyclops!'>
       <IconTextHeader
         className='h-[14%]'
         iconColor='dark'

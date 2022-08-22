@@ -16,7 +16,7 @@ const Search = () => {
     setFilteredItems(items.filter(item => item.name.toLocaleLowerCase().indexOf(e.detail.value!.toLocaleLowerCase()) !== -1));
   };
   return (
-    <PageWithGrid>
+    <PageWithGrid toolbarTitle='Find your item!'>
       <IonSearchbar className='rounded-xl pb-0' mode='ios' value={searchText} onIonChange={onSearchTextChange} />
       {filteredItems.map(item => {
         const categoryArr = categories.filter(cat => cat.id == item.categoryId);

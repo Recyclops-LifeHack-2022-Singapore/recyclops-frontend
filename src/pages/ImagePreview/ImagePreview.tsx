@@ -115,7 +115,7 @@ const ImagePreview = () => {
   };
 
   return (
-    <PageWithGrid>
+    <PageWithGrid toolbarTitle='Scan Your Recyclables!'>
       {isLoading && <Loader />} {!isLoading && <ImagePreviewComponent />}
     </PageWithGrid>
   );

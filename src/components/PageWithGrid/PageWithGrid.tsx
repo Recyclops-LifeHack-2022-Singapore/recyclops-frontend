@@ -6,14 +6,15 @@ import ItemModal from '@components/ItemModal';
 import NoMatchModal from '@/components/NoMatchModal';
 
 type Props = {
+  toolbarTitle: string;
   children: React.ReactNode;
 };
 
-const PageWithGrid = ({ children }: Props) => {
+const PageWithGrid = ({ toolbarTitle, children }: Props) => {
   return (
     <>
       <IonPage>
-        <AppToolbar />
+        <AppToolbar title={toolbarTitle} />
         <ItemModal />
         <NoMatchModal />
         <IonContent className='font-Inter'>

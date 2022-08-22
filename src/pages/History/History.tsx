@@ -24,7 +24,7 @@ const History = () => {
   };
 
   return (
-    <PageWithGrid>
+    <PageWithGrid toolbarTitle='History'>
       <IonAlert
         mode='ios'
         isOpen={showAlert}

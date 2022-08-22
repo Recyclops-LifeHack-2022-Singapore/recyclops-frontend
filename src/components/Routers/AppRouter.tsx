@@ -17,6 +17,8 @@ import { HistoryData } from '@/store/history/historySlice';
 import { useDispatch } from 'react-redux';
 import { setHistory } from '@/store/history/historySlice';
 
+import './main.css';
+
 const AppRouter = () => {
   const dispatch = useDispatch();
 
@@ -54,18 +56,18 @@ const AppRouter = () => {
             </Route>
           </Switch>
         </IonRouterOutlet>
-        <IonTabBar color='light' mode='ios' className='h-14' slot='bottom'>
+        <IonTabBar color='light' mode='ios' className='h-12' slot='bottom'>
           <IonTabButton tab='home' href={Routes.home}>
-            <IonIcon icon={home} />
+            <IonIcon className='h-6' icon={home} />
           </IonTabButton>
           <IonTabButton tab='camera' href={Routes.takePhoto}>
-            <IonIcon icon={camera} />
+            <IonIcon className='h-6' icon={camera} />
           </IonTabButton>
           <IonTabButton tab='search' href={Routes.search}>
-            <IonIcon icon={search} />
+            <IonIcon className='h-6' icon={search} />
           </IonTabButton>
           <IonTabButton tab='history' href={Routes.history}>
-            <IonIcon icon={time} />
+            <IonIcon className='h-6' icon={time} />
           </IonTabButton>
         </IonTabBar>
       </IonTabs>

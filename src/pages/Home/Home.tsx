@@ -5,14 +5,13 @@ import Routes from '@/utilities/routes';
 import { IonRow, IonText, IonGrid } from '@ionic/react';
 import IconTextHeader from '@/components/textIconHeader';
 import PageWithGrid from '@components/PageWithGrid';
-import ItemCard from '@components/ItemCard';
-import { informationCircle, bulbOutline } from 'ionicons/icons';
+import { informationCircle, bulbOutline, linkSharp } from 'ionicons/icons';
 import { resources } from '@/models/resources/resources';
-import { link } from '@/models/categories/categories';
 import BlockButton from '@/components/BlockButton';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { useDispatch } from 'react-redux';
 import { updateTakenImage } from '@/store/image/imageSlice';
+import TextButtonCard from '@/components/TextButtonCard';
 
 const Home: React.FC = () => {
   const history = useHistory();
@@ -59,10 +58,10 @@ const Home: React.FC = () => {
         className='h-[6%]'
         iconColor='dark'
         icon={informationCircle}
-        iconStyles='text-3xl'
+        iconStyles='text-2xl'
         Header={
-          <IonText className='font-epilogue text-2xl font-medium' color='dark'>
-            Find Out More!
+          <IonText className='font-epilogue text-xl font-medium' color='dark'>
+            Additional Resources
           </IonText>
         }
       />
@@ -71,13 +70,7 @@ const Home: React.FC = () => {
           {resources.map(
             resource =>
               !!resource.name && (
-                <ItemCard
-                  onClick={() => openLink(resource.link)}
-                  className='m-4'
-                  key={resource.id}
-                  resource={resource}
-                  categoryArr={link}
-                />
+                <TextButtonCard onClick={() => openLink(resource.link)} key={resource.id} text={resource.name} icon={linkSharp} />
               ),
           )}
         </IonGrid>

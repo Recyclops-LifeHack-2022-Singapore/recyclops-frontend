@@ -1,5 +1,5 @@
 import React from 'react';
-import { IonHeader, IonTitle, IonToolbar, IonIcon, IonBackButton, IonButtons, IonLabel } from '@ionic/react';
+import { IonHeader, IonToolbar, IonIcon, IonLabel } from '@ionic/react';
 import { leafOutline } from 'ionicons/icons';
 
 import './main.css';

@@ -1,18 +1,21 @@
 import React from 'react';
-import { IonHeader, IonTitle, IonToolbar, IonIcon, IonBackButton, IonButtons } from '@ionic/react';
+import { IonHeader, IonToolbar, IonIcon, IonLabel } from '@ionic/react';
 import { leafOutline } from 'ionicons/icons';
 
-const AppToolbar = () => {
+import './main.css';
+
+type Props = {
+  title: string;
+};
+
+const AppToolbar = ({ title }: Props) => {
   return (
-    <IonHeader>
-      <IonToolbar color='light' mode='ios' className='h-14 flex'>
-        <IonButtons slot='start'>
-          <IonBackButton />
-        </IonButtons>
-        <IonTitle color='primary' className='font-epilogue font-semibold text-2xl justify-center'>
-          <IonIcon color='dark' className='pr-1' icon={leafOutline} />
-          Recyclops
-        </IonTitle>
+    <IonHeader className='h-16 w-10/12'>
+      <IonToolbar color='primary' mode='ios' className='top-4 h-12 rounded-tr-xl rounded-br-xl'>
+        <IonIcon color='dark' className='px-1 pt-2 float-left text-2xl' icon={leafOutline} />
+        <IonLabel color='light' className='p-2 float-left font-epilogue font-semibold text-xl text-left'>
+          {title}
+        </IonLabel>
       </IonToolbar>
     </IonHeader>
   );

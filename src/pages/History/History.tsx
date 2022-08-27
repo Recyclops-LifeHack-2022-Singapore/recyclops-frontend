@@ -24,7 +24,7 @@ const History = () => {
   };
 
   return (
-    <PageWithGrid>
+    <PageWithGrid toolbarTitle='History'>
       <IonAlert
         mode='ios'
         isOpen={showAlert}
@@ -48,7 +48,7 @@ const History = () => {
           },
         ]}
       />
-      <IonRow className='pl-5 h-[10%] items-end'>
+      <IonRow className='pl-5 h-[5%] items-end'>
         <h1 className='font-semibold text-2xl'>History</h1>
       </IonRow>
       <IonRow className='h-[80%] overflow-y-auto'>
@@ -78,7 +78,7 @@ const History = () => {
             })}
         </IonGrid>
       </IonRow>
-      <IonRow className='px-5'>
+      <IonRow className='h[10%] px-5'>
         <BlockButton color='danger' title='Clear History' onClick={() => setShowAlert(true)} />
       </IonRow>
     </PageWithGrid>

@@ -9,7 +9,7 @@ type Props = {
 const TextButtonCard = ({ text, icon, onClick }: Props) => {
   return (
     <>
-      <IonCard onClick={onClick} className='m-3 my-4 mt-2'>
+      <IonCard onClick={onClick} className='m-3 my-4 mt-2 rounded-xl'>
         <IonCardContent className='p-2'>
           <IonGrid className='p-0'>
             <IonRow>

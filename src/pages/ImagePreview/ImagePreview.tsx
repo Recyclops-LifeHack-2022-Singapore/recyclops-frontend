@@ -86,13 +86,10 @@ const ImagePreview = () => {
   const ImagePreviewComponent = () => {
     return (
       <>
-        <IonRow className='h-[10%]'></IonRow>
-        <IonRow className='h-[5%] items-end'>
-          <h1 className='text-center w-full font-epilogue font-medium'>Image Preview</h1>
-        </IonRow>
-        <IonRow className='h-[50%] justify-center'>
+        <IonRow className='h-[2%]'></IonRow>
+        <IonRow className='h-[78%] justify-center'>
           {!currentImage && (
-            <div className='bg-[#a8a8a873] rounded-xl h-full w-4/6 flex justify-center items-center'>
+            <div className='bg-[#a8a8a873] rounded-xl h-full w-11/12 flex justify-center items-center'>
               <h1 className='font-epilogue'>No Image Taken</h1>
             </div>
           )}
@@ -100,7 +97,7 @@ const ImagePreview = () => {
             <img
               src={currentImage.preview}
               alt='Preview'
-              className='rounded-xl h-full w-4/6 flex justify-center items-center object-cover object-center'
+              className='rounded-xl h-full w-11/12 flex justify-center items-center object-cover object-center'
             />
           )}
         </IonRow>

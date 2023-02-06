@@ -20,9 +20,5 @@ The Frontend repository for Recyclops hosted on Netlify. Built with Ionic, React
 7. Run `npm start` to start the server on localhost
 
 ## Screenshots
+<img width="842" alt="recyclops 661d49a57755160f5e6b" src="https://user-images.githubusercontent.com/29945147/216985786-60c48787-7ae2-49c8-b379-a1589e503cf1.png">
 
-_[Placeholder]_
-
-_[Placeholder]_
-
-_[Placeholder]_
